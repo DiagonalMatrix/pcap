@@ -3,6 +3,7 @@
 2. Ordered that means indexed
 3. *** IMMIUTABLE ****
 4. Allow duplicates
+5. Can use index for accessing element
 
 NOTE: When tuple is used... When a list required that doesn't accept immutable values.
 '''
