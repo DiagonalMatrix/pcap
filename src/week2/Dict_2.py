@@ -26,3 +26,24 @@ print(f'Dict Items are {dict_itms}')
 if 'name' in dict:
     print('====== NAME in dict')
     print(dict['name'])
+
+# ================ items() =============================
+print(f'items contains === >>> {dict.items()}') # returns list of Tuples
+
+for key, val in dict.items():
+    print(f'The kay is {key} and the value is {val}')
+
+
+# ========== UPDATE ======================
+#NOTE: I didn't see any diff in below 2 formates.
+
+dictin = {'id': 100,
+          'year': 2020}
+
+# Method 1
+dictin.update({'year':2021})
+dictin.update({'name':'Srujan'})
+
+# Method 2
+dictin['serial'] = 12345
+
