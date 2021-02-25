@@ -16,7 +16,11 @@ PATH = '/home/srujan/Documents/github/pcap/src/data/emp_data.txt'
 readFile = open(PATH,'rt').read()
 
 print('------- Input File in txt format-----------')
-print(readFile)
+#print(readFile)
+
+elements = readFile.split('\n')[0].split(',')
+for ind in range(len(elements)):
+    var = elements[ind]
 
 def read_file(readfile):
     empId = []
@@ -33,7 +37,6 @@ def list_dict(file_in_list):
     emp_id = {f'{file_in_list[0][0]}':file_in_list[0][1:]}
     Basic_pay = {f'{file_in_list[1][0]}':file_in_list[1][1:]}
     incentives = {f'{file_in_list[2][0]}':file_in_list[2][1:]}
-
     return emp_id, Basic_pay, incentives
 
 def dict_df(dictionaries):
@@ -47,7 +50,7 @@ def dict_df(dictionaries):
     query = ''' SELECT * FROM emp_data WHERE Basic_pay > 12000 '''
     res = sqldf(query)
     print('------------ output file in DataFrame------------')
-    print(res)
+    #print(res)
 
 #====== CALLING fUNCTIONS ============
 file_in_list = read_file(readFile)
