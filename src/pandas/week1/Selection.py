@@ -3,7 +3,7 @@
 ####################################################################################
 import pandas as pd
 from src.datasets import data
-from tabulate import tabulate
+import numpy as np
 
 pd.options.display.width=None
 netflix = data.netflix()
@@ -73,4 +73,31 @@ first = netflix.iloc[0:7, 2:5]
 
 method2 = netflix.loc[0:7, ['show_id','type']]
 #print(method2)
-##############################################################################################
+
+###########################Boolean indexing ####################################################
+# netflix[<columns>] > number -> returns Boolean
+# place above condition in a DF -> returns True records.
+###########################Boolean indexing ####################################################
+
+rel_yr = netflix[netflix['release_year'] == 2019]
+#print(rel_yr)
+
+rel_ctry = netflix[netflix['country'] == 'India']
+#print(rel_ctry)
+
+#NOTE ----> YOU CAN'T DO THIS WAY.
+#rel_ctry = netflix[netflix['country'] == ['India','Mexico']]
+
+########################### ISIN() ############################################################
+# isin() takes list arguemnt, where as ==, > takes single string/int object
+# isin can cmpare multiple values, where as == can't campare multiple values.
+########################### ISIN() ############################################################
+netflix1 = netflix.copy()
+netflix1 = netflix1[~netflix1['director'].isin(['Robert Luketic'])] # ~ is NOT Shane Acker
+netflix1 = netflix1[netflix1['director'].isin(['Robert Luketic','Shane Acker'])] # ~ is NOT
+#print(netflix1)
+
+
+
+
+
