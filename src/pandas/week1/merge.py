@@ -2,6 +2,10 @@ import pandas as pd
 from src.datasets import data
 import numpy as np
 
+pd.set_option('display.max_rows', 500)
+pd.set_option('display.max_columns', 500)
+pd.set_option('display.width', 1000)
+
 pd.options.display.width=None
 netflix = data.netflix()
 
@@ -99,18 +103,30 @@ TV-MA         1     1      1         1     0        1           1             1 
 # 'NC-17' = 'Over 17'
 # 'UR' = 'Unrated'
 
-netflix_cat = netflix['rating'].astype('category')
-print(netflix_cat)
+#netflix_cat = netflix['rating'].astype('category')
+#print(netflix_cat)
 '''
 Name: rating, Length: 7787, dtype: category
 Categories (14, object): ['G', 'NC-17', 'NR', 'PG', ..., 'TV-Y', 'TV-Y7', 'TV-Y7-FV', 'UR']
 '''
 
-#netflix_cat['rating'].cat.categories = []
+#netflix_cat['rating'].cat.categories = ['General Audiences']
 
-
-
-
+df = pd.DataFrame({"id": [1, 2, 3, 4, 5, 6,7,8], "raw_grade": ["a", "b", "b", "a", "a", "e",'c','f']})
+df['grade'] = df['raw_grade'].astype('category')
+print(df['grade'])
+#print('sorting',pd.unique(df['grade'].sort_values()))
+df['grade'].cat.categories = ["very good","good",'bad','very bad','medium']
+print(df['grade'])
+df["grade"] = df["grade"].cat.set_categories(["very bad",'bad', "medium", "good", "very good"]) #
+print(df["grade"])
+df_group = df.groupby("grade").size()
+df_group1 = df.groupby("raw_grade").size()
+print(df_group)
+print(df_group1)
+#['a', 'b', 'c', 'e']
+#['very good', 'good', 'bad', 'very bad']
+#['very bad', 'bad', 'medium', 'good', 'very good']
 
 
 
